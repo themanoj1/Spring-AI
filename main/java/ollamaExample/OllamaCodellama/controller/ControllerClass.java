@@ -1,6 +1,7 @@
 package ollamaExample.OllamaCodellama.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +14,10 @@ public class ControllerClass {
 
     private ChatClient chatClient;
 
-    public ControllerClass(ChatClient.Builder builder){
+    public ControllerClass(ChatModel chatModel){
 
-        this. chatClient= builder.build();
+        this. chatClient= ChatClient.builder(chatModel).build();
+        System.out.println(chatModel.getClass().getName());
     }
 
     @GetMapping(value="/chat")
